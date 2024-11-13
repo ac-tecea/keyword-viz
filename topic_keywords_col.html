@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Topics Overview:Colombia</title>
+    <style>
+        body { background-color: #eaeaea; color: white; font-family: Arial, sans-serif; }
+        h1 { color: #0db4c2; text-align: center; font-size: 2.5em; margin-top: 20px; }
+        h2 { color: #0c41aa; text-align: center; font-size: 1.5em; margin-top: -10px; margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <h1>Topics Overview by Node: Colombia</h1>
+    <h2>An interactive visualization of relevant keywords and their volumes (>1.000)</h2>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 850px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lightblue", "font": {"color": "white"}, "id": "things to do in panama", "label": "things to do in panama", "shape": "dot", "size": 35, "title": "Topic: things to do in panama"}, {"color": "purple", "font": {"color": "white"}, "id": "capital de panama", "label": "capital de panama", "shape": "dot", "size": 30, "title": "Keyword: capital de panama | Volume: 3.600"}, {"color": "purple", "font": {"color": "white"}, "id": "panama city", "label": "panama city", "shape": "dot", "size": 30, "title": "Keyword: panama city | Volume: 3.600"}, {"color": "purple", "font": {"color": "white"}, "id": "ciudad de panama", "label": "ciudad de panama", "shape": "dot", "size": 30, "title": "Keyword: ciudad de panama | Volume: 5.400"}, {"color": "purple", "font": {"color": "white"}, "id": "que hacer en panama", "label": "que hacer en panama", "shape": "dot", "size": 30, "title": "Keyword: que hacer en panama | Volume: 1.900"}, {"color": "lightblue", "font": {"color": "white"}, "id": "best time to visit panama", "label": "best time to visit panama", "shape": "dot", "size": 35, "title": "Topic: best time to visit panama"}, {"color": "purple", "font": {"color": "white"}, "id": "clima panama", "label": "clima panama", "shape": "dot", "size": 30, "title": "Keyword: clima panama | Volume: 2.400"}, {"color": "lightblue", "font": {"color": "white"}, "id": "cheap flights to panama", "label": "cheap flights to panama", "shape": "dot", "size": 35, "title": "Topic: cheap flights to panama"}, {"color": "purple", "font": {"color": "white"}, "id": "aerolineas colombianas", "label": "aerolineas colombianas", "shape": "dot", "size": 30, "title": "Keyword: aerolineas colombianas | Volume: 8.100"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos internacionales en colombia", "label": "vuelos internacionales en colombia", "shape": "dot", "size": 30, "title": "Keyword: vuelos internacionales en colombia | Volume: 1.900"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos bogota panama", "label": "vuelos bogota panama", "shape": "dot", "size": 30, "title": "Keyword: vuelos bogota panama | Volume: 2.900"}, {"color": "purple", "font": {"color": "white"}, "id": "bogota panama", "label": "bogota panama", "shape": "dot", "size": 30, "title": "Keyword: bogota panama | Volume: 1.600"}, {"color": "purple", "font": {"color": "white"}, "id": "viva air", "label": "viva air", "shape": "dot", "size": 30, "title": "Keyword: viva air | Volume: 1.830.000"}, {"color": "purple", "font": {"color": "white"}, "id": "viva air vuelos", "label": "viva air vuelos", "shape": "dot", "size": 30, "title": "Keyword: viva air vuelos | Volume: 14.800"}, {"color": "purple", "font": {"color": "white"}, "id": "viva colombia", "label": "viva colombia", "shape": "dot", "size": 30, "title": "Keyword: viva colombia | Volume: 12.100"}, {"color": "purple", "font": {"color": "white"}, "id": "viva air colombia", "label": "viva air colombia", "shape": "dot", "size": 30, "title": "Keyword: viva air colombia | Volume: 3.600"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos baratos viva colombia", "label": "vuelos baratos viva colombia", "shape": "dot", "size": 30, "title": "Keyword: vuelos baratos viva colombia | Volume: 2.900"}, {"color": "purple", "font": {"color": "white"}, "id": "viva colombia vuelos", "label": "viva colombia vuelos", "shape": "dot", "size": 30, "title": "Keyword: viva colombia vuelos | Volume: 1.900"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos a espa\u00f1a desde colombia cuando se reactivan", "label": "vuelos a espa\u00f1a desde colombia cuando se reactivan", "shape": "dot", "size": 26.0, "title": "Keyword: vuelos a espa\u00f1a desde colombia cuando se reactivan | Volume: 1.300"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos baratos", "label": "vuelos baratos", "shape": "dot", "size": 30, "title": "Keyword: vuelos baratos | Volume: 550.000"}, {"color": "purple", "font": {"color": "white"}, "id": "pasajes baratos", "label": "pasajes baratos", "shape": "dot", "size": 30, "title": "Keyword: pasajes baratos | Volume: 40.500"}, {"color": "purple", "font": {"color": "white"}, "id": "pasajes baratos en avion", "label": "pasajes baratos en avion", "shape": "dot", "size": 30, "title": "Keyword: pasajes baratos en avion | Volume: 27.100"}, {"color": "purple", "font": {"color": "white"}, "id": "aerolinea colombia", "label": "aerolinea colombia", "shape": "dot", "size": 30, "title": "Keyword: aerolinea colombia | Volume: 27.100"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos economicos", "label": "vuelos economicos", "shape": "dot", "size": 30, "title": "Keyword: vuelos economicos | Volume: 22.200"}, {"color": "purple", "font": {"color": "white"}, "id": "viajes baratos", "label": "viajes baratos", "shape": "dot", "size": 30, "title": "Keyword: viajes baratos | Volume: 8.100"}, {"color": "purple", "font": {"color": "white"}, "id": "tiquetes baratos colombia", "label": "tiquetes baratos colombia", "shape": "dot", "size": 30, "title": "Keyword: tiquetes baratos colombia | Volume: 8.100"}, {"color": "purple", "font": {"color": "white"}, "id": "pasajes en avion", "label": "pasajes en avion", "shape": "dot", "size": 30, "title": "Keyword: pasajes en avion | Volume: 6.600"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos baratos a colombia", "label": "vuelos baratos a colombia", "shape": "dot", "size": 30, "title": "Keyword: vuelos baratos a colombia | Volume: 6.600"}, {"color": "purple", "font": {"color": "white"}, "id": "tiquetes aereos baratos", "label": "tiquetes aereos baratos", "shape": "dot", "size": 30, "title": "Keyword: tiquetes aereos baratos | Volume: 5.400"}, {"color": "purple", "font": {"color": "white"}, "id": "tiquetes economicos", "label": "tiquetes economicos", "shape": "dot", "size": 30, "title": "Keyword: tiquetes economicos | Volume: 4.400"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos baratos com", "label": "vuelos baratos com", "shape": "dot", "size": 30, "title": "Keyword: vuelos baratos com | Volume: 4.400"}, {"color": "purple", "font": {"color": "white"}, "id": "tickets baratos", "label": "tickets baratos", "shape": "dot", "size": 30, "title": "Keyword: tickets baratos | Volume: 1.900"}, {"color": "purple", "font": {"color": "white"}, "id": "aerolineas baratas colombia", "label": "aerolineas baratas colombia", "shape": "dot", "size": 30, "title": "Keyword: aerolineas baratas colombia | Volume: 1.900"}, {"color": "purple", "font": {"color": "white"}, "id": "aerolinea economica colombia", "label": "aerolinea economica colombia", "shape": "dot", "size": 30, "title": "Keyword: aerolinea economica colombia | Volume: 1.900"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos a colombia", "label": "vuelos a colombia", "shape": "dot", "size": 30, "title": "Keyword: vuelos a colombia | Volume: 1.600"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos nacionales baratos", "label": "vuelos nacionales baratos", "shape": "dot", "size": 30, "title": "Keyword: vuelos nacionales baratos | Volume: 1.600"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos nacionales colombia", "label": "vuelos nacionales colombia", "shape": "dot", "size": 26.0, "title": "Keyword: vuelos nacionales colombia | Volume: 1.300"}, {"color": "lightblue", "font": {"color": "white"}, "id": "all-inclusive panama resorts", "label": "all-inclusive panama resorts", "shape": "dot", "size": 35, "title": "Topic: all-inclusive panama resorts"}, {"color": "purple", "font": {"color": "white"}, "id": "hoteles en panama", "label": "hoteles en panama", "shape": "dot", "size": 30, "title": "Keyword: hoteles en panama | Volume: 2.900"}, {"color": "purple", "font": {"color": "white"}, "id": "hoteles todo incluido en panama", "label": "hoteles todo incluido en panama", "shape": "dot", "size": 30, "title": "Keyword: hoteles todo incluido en panama | Volume: 2.400"}, {"color": "purple", "font": {"color": "white"}, "id": "playa blanca beach resort", "label": "playa blanca beach resort", "shape": "dot", "size": 26.0, "title": "Keyword: playa blanca beach resort | Volume: 1.300"}, {"color": "lightblue", "font": {"color": "white"}, "id": "panama beaches", "label": "panama beaches", "shape": "dot", "size": 35, "title": "Topic: panama beaches"}, {"color": "purple", "font": {"color": "white"}, "id": "panama playas", "label": "panama playas", "shape": "dot", "size": 30, "title": "Keyword: panama playas | Volume: 2.400"}, {"color": "purple", "font": {"color": "white"}, "id": "san blas panama", "label": "san blas panama", "shape": "dot", "size": 30, "title": "Keyword: san blas panama | Volume: 2.900"}, {"color": "lightblue", "font": {"color": "white"}, "id": "panama travel requirements for colombians", "label": "panama travel requirements for colombians", "shape": "dot", "size": 35, "title": "Topic: panama travel requirements for colombians"}, {"color": "purple", "font": {"color": "white"}, "id": "moneda de panama", "label": "moneda de panama", "shape": "dot", "size": 30, "title": "Keyword: moneda de panama | Volume: 4.400"}, {"color": "lightblue", "font": {"color": "white"}, "id": "panama trip packages", "label": "panama trip packages", "shape": "dot", "size": 35, "title": "Topic: panama trip packages"}, {"color": "purple", "font": {"color": "white"}, "id": "todo incluido panama", "label": "todo incluido panama", "shape": "dot", "size": 30, "title": "Keyword: todo incluido panama | Volume: 1.600"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos a panama", "label": "vuelos a panama", "shape": "dot", "size": 30, "title": "Keyword: vuelos a panama | Volume: 3.600"}, {"color": "purple", "font": {"color": "white"}, "id": "tiquetes a panama", "label": "tiquetes a panama", "shape": "dot", "size": 30, "title": "Keyword: tiquetes a panama | Volume: 1.900"}, {"color": "purple", "font": {"color": "white"}, "id": "vuelos baratos a panama", "label": "vuelos baratos a panama", "shape": "dot", "size": 30, "title": "Keyword: vuelos baratos a panama | Volume: 1.600"}]);
+                  edges = new vis.DataSet([{"from": "things to do in panama", "to": "capital de panama"}, {"from": "things to do in panama", "to": "panama city"}, {"from": "things to do in panama", "to": "ciudad de panama"}, {"from": "things to do in panama", "to": "que hacer en panama"}, {"from": "best time to visit panama", "to": "clima panama"}, {"from": "cheap flights to panama", "to": "aerolineas colombianas"}, {"from": "cheap flights to panama", "to": "vuelos internacionales en colombia"}, {"from": "cheap flights to panama", "to": "vuelos bogota panama"}, {"from": "cheap flights to panama", "to": "bogota panama"}, {"from": "cheap flights to panama", "to": "viva air"}, {"from": "cheap flights to panama", "to": "viva air vuelos"}, {"from": "cheap flights to panama", "to": "viva colombia"}, {"from": "cheap flights to panama", "to": "viva air colombia"}, {"from": "cheap flights to panama", "to": "vuelos baratos viva colombia"}, {"from": "cheap flights to panama", "to": "viva colombia vuelos"}, {"from": "cheap flights to panama", "to": "vuelos a espa\u00f1a desde colombia cuando se reactivan"}, {"from": "cheap flights to panama", "to": "vuelos baratos"}, {"from": "cheap flights to panama", "to": "pasajes baratos"}, {"from": "cheap flights to panama", "to": "pasajes baratos en avion"}, {"from": "cheap flights to panama", "to": "aerolinea colombia"}, {"from": "cheap flights to panama", "to": "vuelos economicos"}, {"from": "cheap flights to panama", "to": "viajes baratos"}, {"from": "cheap flights to panama", "to": "tiquetes baratos colombia"}, {"from": "cheap flights to panama", "to": "pasajes en avion"}, {"from": "cheap flights to panama", "to": "vuelos baratos a colombia"}, {"from": "cheap flights to panama", "to": "tiquetes aereos baratos"}, {"from": "cheap flights to panama", "to": "tiquetes economicos"}, {"from": "cheap flights to panama", "to": "vuelos baratos com"}, {"from": "cheap flights to panama", "to": "tickets baratos"}, {"from": "cheap flights to panama", "to": "aerolineas baratas colombia"}, {"from": "cheap flights to panama", "to": "aerolinea economica colombia"}, {"from": "cheap flights to panama", "to": "vuelos a colombia"}, {"from": "cheap flights to panama", "to": "vuelos nacionales baratos"}, {"from": "cheap flights to panama", "to": "vuelos nacionales colombia"}, {"from": "all-inclusive panama resorts", "to": "hoteles en panama"}, {"from": "all-inclusive panama resorts", "to": "hoteles todo incluido en panama"}, {"from": "all-inclusive panama resorts", "to": "playa blanca beach resort"}, {"from": "panama beaches", "to": "panama playas"}, {"from": "panama beaches", "to": "san blas panama"}, {"from": "panama travel requirements for colombians", "to": "moneda de panama"}, {"from": "panama trip packages", "to": "todo incluido panama"}, {"from": "panama trip packages", "to": "vuelos a panama"}, {"from": "panama trip packages", "to": "tiquetes a panama"}, {"from": "panama trip packages", "to": "vuelos baratos a panama"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"shape": "dot", "font": {"size": 15}, "scaling": {"label": true}, "color": {"hover": {"border": "white", "background": "#FFD700"}}, "borderWidth": 2}, "interaction": {"hover": true, "tooltipDelay": 200, "hideEdgesOnDrag": true, "dragNodes": true, "selectable": true, "hoverConnectedEdges": true}, "edges": {"color": {"color": "#AAAAAA"}, "smooth": {"type": "dynamic"}}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
+</body>
+</html>
